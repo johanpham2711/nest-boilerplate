@@ -4,8 +4,8 @@
    [x] Init project
    [x] Prettier
    [x] Add commit lint
-   [] Add husky
-   [] Update eslint
+   [x] Add husky
+   [x] Update eslint
    [] Add docker-compose.yml file to run postgres
    [] Config Prisma
    [] ...
