@@ -7,5 +7,5 @@
    [x] Add husky
    [x] Update eslint
    [x] Add docker-compose.yml file to run postgres and redis
-   [] Config Prisma
+   [x] Config Prisma
    [] ...
