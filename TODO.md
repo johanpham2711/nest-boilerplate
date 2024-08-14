@@ -6,6 +6,6 @@
    [x] Add commit lint
    [x] Add husky
    [x] Update eslint
-   [] Add docker-compose.yml file to run postgres
+   [x] Add docker-compose.yml file to run postgres and redis
    [] Config Prisma
    [] ...
