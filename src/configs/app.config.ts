@@ -1,11 +1,13 @@
 import * as dotenv from 'dotenv';
-import { IConfig } from 'src/interfaces';
+import { IAppConfig } from 'src/interfaces';
 dotenv.config();
 
-export const config: IConfig = {
+export const appConfig: IAppConfig = {
   // Server
+  host: process.env.HOST ?? 'localhost',
   port: Number(process.env.PORT ?? 8080),
   environment: process.env.NODE_ENV ?? 'local',
+  version: process.env.VERSION ?? '0.0.1',
 
   // Database
   databaseUrl:

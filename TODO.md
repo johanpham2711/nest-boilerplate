@@ -9,5 +9,5 @@
    [x] Add docker-compose.yml file to run postgres and redis
    [x] Config Prisma
    [x] Config env
-   [] Config Swagger
+   [x] Config Swagger
    [] ...
