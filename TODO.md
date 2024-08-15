@@ -10,4 +10,5 @@
    [x] Config Prisma
    [x] Config env
    [x] Config Swagger
+   [x] App config
    [] ...

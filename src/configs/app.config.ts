@@ -8,6 +8,7 @@ export const appConfig: IAppConfig = {
   port: Number(process.env.PORT ?? 8080),
   environment: process.env.NODE_ENV ?? 'local',
   version: process.env.VERSION ?? '0.0.1',
+  prefix: process.env.PREFIX ?? '/api',
 
   // Database
   databaseUrl:
