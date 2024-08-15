@@ -5,7 +5,10 @@ import { useContainer } from 'class-validator';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './common/filters';
+import {
+  HttpExceptionFilter,
+  PrismaClientExceptionFilter,
+} from './common/filters';
 import { TransformInterceptor } from './common/interceptors';
 import { CustomValidationPipe } from './common/pipes';
 import { appConfig, swaggerConfig } from './configs';
@@ -23,7 +26,10 @@ async function bootstrap(): Promise<void> {
   // Global nest setup
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   app.useGlobalPipes(new CustomValidationPipe());
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(
+    new HttpExceptionFilter(),
+    new PrismaClientExceptionFilter(),
+  );
   app.useGlobalInterceptors(new TransformInterceptor());
 
   // Starts listening to shutdown hooks

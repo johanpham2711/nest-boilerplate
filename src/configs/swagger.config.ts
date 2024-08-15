@@ -8,6 +8,9 @@ export const swaggerConfig = (app: INestApplication): void => {
     .setDescription('NestJS Boilerplate API documentation!')
     .setVersion(appConfig.version)
     .addBearerAuth()
+    .addTag('app', 'App API')
+    .addTag('auth', 'Auth API')
+    .addTag('users', 'Users API')
     .addSecurity('basic', {
       type: 'http',
       scheme: 'basic',
