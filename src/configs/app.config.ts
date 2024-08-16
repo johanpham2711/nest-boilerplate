@@ -10,6 +10,9 @@ export const appConfig: IAppConfig = {
   version: process.env.VERSION ?? '0.0.1',
   prefix: process.env.PREFIX ?? '/api',
 
+  // Security
+  aesKey: process.env.AES_KEY ?? 'FzF8V3JU2u2e5jPZ',
+
   // Database
   databaseUrl:
     process.env.DATABASE_URL ??

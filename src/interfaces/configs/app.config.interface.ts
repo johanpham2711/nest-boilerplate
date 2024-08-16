@@ -6,6 +6,9 @@ export interface IAppConfig {
   readonly version: string;
   readonly prefix: string;
 
+  // Security
+  readonly aesKey: string;
+
   // Database
   readonly databaseUrl: string;
 }
