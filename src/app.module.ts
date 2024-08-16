@@ -7,9 +7,16 @@ import {
   TemplatesModule,
   UsersModule,
 } from './modules';
+import { EmailModule } from './services';
 
 @Module({
-  imports: [PrismaModule, TemplatesModule, AuthModule, UsersModule],
+  imports: [
+    PrismaModule,
+    EmailModule,
+    TemplatesModule,
+    AuthModule,
+    UsersModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

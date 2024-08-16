@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your OTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: url('your-background-image-url.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            color: white;
+        }
+
+        .header img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .header .date {
+            text-align: right;
+            font-size: 12px;
+        }
+
+        .otp {
+            font-size: 32px;
+            font-weight: bold;
+            color: #d32f2f;
+            letter-spacing: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .content {
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .content p {
+            margin: 0 0 10px;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #999999;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Boilerplate" />
+            <div class="date">
+                <%= date %>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Your OTP</h2>
+            <p>Hey <%= name %>,</p>
+            <p>Thank you for choosing Nest Boilerplate. Use the following OTP to complete the procedure to change
+                your email address. OTP is valid for <strong>15 minutes</strong>. Do not share this code with others,
+                including Nest Boilerplate employees.</p>
+            <div class="otp">
+                <%= otp %>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; <%= new Date().getFullYear() %> Nest Boilerplate. All rights reserved.
+        </div>
+    </div>
+</body>
+
+</html>

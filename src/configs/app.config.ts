@@ -19,4 +19,9 @@ export const appConfig: IAppConfig = {
   databaseUrl:
     process.env.DATABASE_URL ??
     'postgres://postgres:password@localhost:5432/postgres',
+
+  // Mail
+  mailHost: process.env.MAIL_HOST ?? 'smtp.mailtrap.io',
+  smtpUsername: process.env.SMTP_USERNAME ?? 'username',
+  smtpPassword: process.env.SMTP_PASSWORD ?? 'password',
 };

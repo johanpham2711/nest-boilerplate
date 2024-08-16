@@ -13,4 +13,9 @@ export interface IAppConfig {
 
   // Database
   readonly databaseUrl: string;
+
+  // Mail
+  readonly mailHost: string;
+  readonly smtpUsername: string;
+  readonly smtpPassword: string;
 }

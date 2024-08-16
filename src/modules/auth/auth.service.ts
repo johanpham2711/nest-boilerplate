@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { OTP_EXPIRY } from 'src/constants';
 import { ILoginResponse, IRegisterResponse } from 'src/interfaces';
 import { IMessageResponse } from 'src/interfaces/common/message-response.interface';
 import { AUTH_MESSAGE } from 'src/messages';
+import { EmailService } from 'src/services';
 import { CommonHelper, EncryptHelper, ErrorHelper } from 'src/utils';
 import { UsersService } from '../users/users.service';
 import { LoginDto, RegisterDto, VerifyRegisterDto } from './dtos';
@@ -12,6 +14,7 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private jwtService: JwtService,
+    private emailService: EmailService,
   ) {}
 
   async register(payload: RegisterDto): Promise<IRegisterResponse> {
@@ -25,9 +28,16 @@ export class AuthService {
 
     const otp = CommonHelper.generateOtp();
     console.log('🚀 ~ AuthService ~ register ~ otp:', otp);
+    // otp expiry in 15 minutes
+    const otpExpiry = new Date();
+    otpExpiry.setMinutes(otpExpiry.getMinutes() + OTP_EXPIRY);
+
+    await this.emailService.sendVerifyRegisterOtp(payload, otp);
 
     // Encrypt user data
-    const hash = EncryptHelper.encryptData(JSON.stringify({ ...payload, otp }));
+    const hash = EncryptHelper.encryptData(
+      JSON.stringify({ ...payload, otp, otpExpiry }),
+    );
 
     return {
       hash,
@@ -40,6 +50,7 @@ export class AuthService {
     // Decrypt user data
     const data = JSON.parse(EncryptHelper.decryptData(hash)) as RegisterDto & {
       otp: string;
+      otpExpiry: string;
     };
 
     // Check if user already exists
@@ -51,6 +62,8 @@ export class AuthService {
     // Check OTP
     if (data.otp !== payload.otp) {
       ErrorHelper.BadRequestException(AUTH_MESSAGE.INVALID_OTP);
+    } else if (new Date() > new Date(data.otpExpiry)) {
+      ErrorHelper.BadRequestException(AUTH_MESSAGE.OTP_EXPIRED);
     }
 
     // Create new user

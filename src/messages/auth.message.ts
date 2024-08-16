@@ -5,5 +5,6 @@ export const AUTH_MESSAGE = {
   USER_REGISTERED: 'User registered successfully!',
   USER_LOGGED_IN: 'User logged in successfully!',
   INVALID_OTP: 'Invalid OTP',
+  OTP_EXPIRED: 'OTP expired',
   UNAUTHORIZED: 'Unauthorized',
 };
