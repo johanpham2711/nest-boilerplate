@@ -101,7 +101,7 @@ export class AuthService {
 
     return {
       token: {
-        accessToken: this.jwtService.sign({ email: user.email }),
+        accessToken: this.jwtService.sign({ ...user, password: undefined }),
       },
       user: {
         ...user,
