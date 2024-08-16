@@ -1,14 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { IRegisterResponse } from 'src/interfaces';
+import { JwtService } from '@nestjs/jwt';
+import { ILoginResponse, IRegisterResponse } from 'src/interfaces';
+import { IMessageResponse } from 'src/interfaces/common/message-response.interface';
 import { AUTH_MESSAGE } from 'src/messages';
 import { CommonHelper, EncryptHelper, ErrorHelper } from 'src/utils';
-import { UsersService } from '../users';
-import { RegisterDto, VerifyRegisterDto } from './dtos';
-import { IMessageResponse } from 'src/interfaces/common/message-response.interface';
+import { UsersService } from '../users/users.service';
+import { LoginDto, RegisterDto, VerifyRegisterDto } from './dtos';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private jwtService: JwtService,
+  ) {}
 
   async register(payload: RegisterDto): Promise<IRegisterResponse> {
     const { email } = payload;
@@ -58,6 +62,32 @@ export class AuthService {
 
     return {
       message: AUTH_MESSAGE.USER_REGISTERED,
+    };
+  }
+
+  async login(payload: LoginDto): Promise<ILoginResponse> {
+    const { email, password } = payload;
+
+    // Check if user exists
+    const user = await this.usersService.getUserByEmail(email);
+    if (user === null) {
+      ErrorHelper.BadRequestException(AUTH_MESSAGE.USER_NOT_FOUND);
+    }
+
+    // Check password
+    const isMatchPassword = EncryptHelper.compare(password, user.password);
+    if (!isMatchPassword) {
+      ErrorHelper.BadRequestException(AUTH_MESSAGE.INVALID_CREDENTIALS);
+    }
+
+    return {
+      token: {
+        accessToken: this.jwtService.sign({ email: user.email }),
+      },
+      user: {
+        ...user,
+        password: undefined,
+      },
     };
   }
 }

@@ -12,8 +12,9 @@ export class UsersRepository implements IRepository<User> {
     return this.prisma.user.create({ data });
   }
 
-  async findOne(query?: Prisma.UserFindFirstArgs): Promise<User | null> {
-    return this.prisma.user.findFirst(query);
+  async findOne(query?: Prisma.UserFindFirstArgs): Promise<User> {
+    const user = await this.prisma.user.findFirst(query);
+    return user as unknown as User;
   }
 
   async findMany(query?: Prisma.UserFindManyArgs): Promise<User[]> {

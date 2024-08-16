@@ -12,6 +12,8 @@ export const appConfig: IAppConfig = {
 
   // Security
   aesKey: process.env.AES_KEY ?? 'FzF8V3JU2u2e5jPZ',
+  jwtSecret: process.env.JWT_SECRET ?? 'secret',
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '5m',
 
   // Database
   databaseUrl:

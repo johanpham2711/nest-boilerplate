@@ -8,6 +8,8 @@ export interface IAppConfig {
 
   // Security
   readonly aesKey: string;
+  readonly jwtSecret: string;
+  readonly jwtExpiresIn: string;
 
   // Database
   readonly databaseUrl: string;
