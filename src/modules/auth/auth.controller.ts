@@ -1,5 +1,14 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Request } from 'express';
+import { JwtAuthGuard } from 'src/common/guards';
 import { AuthService } from './auth.service';
 import { LoginDto, RegisterDto, VerifyRegisterDto } from './dtos';
 
@@ -42,5 +51,16 @@ export class AuthController {
   @HttpCode(200)
   async login(@Body() payload: LoginDto) {
     return this.authService.login(payload);
+  }
+
+  @ApiOperation({ summary: 'API logout' })
+  @ApiBearerAuth()
+  @Post('logout')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
+  async logout(@Req() req: Request) {
+    const token = req?.headers?.authorization?.split(' ')[1];
+
+    return this.authService.logout(token);
   }
 }

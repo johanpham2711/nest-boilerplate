@@ -9,6 +9,7 @@ import { AUTH_MESSAGE } from 'src/messages';
 import { CommonHelper, EncryptHelper, ErrorHelper } from 'src/utils';
 import { UsersService } from '../users/users.service';
 import { LoginDto, RegisterDto, VerifyRegisterDto } from './dtos';
+import { CacheService } from 'src/services';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
     @InjectQueue(QUEUE.EMAIL_QUEUE)
     private readonly emailQueue: Queue,
+    private readonly cacheService: CacheService,
   ) {}
 
   async register(payload: RegisterDto): Promise<IRegisterResponse> {
@@ -105,6 +107,21 @@ export class AuthService {
         ...user,
         password: undefined,
       },
+    };
+  }
+
+  async logout(token: string | undefined): Promise<IMessageResponse> {
+    // Add token to blacklist
+    if (token) {
+      await this.cacheService.set(
+        token,
+        'blacklisted',
+        this.jwtService.decode(token).exp,
+      );
+    }
+
+    return {
+      message: AUTH_MESSAGE.USER_LOGGED_OUT,
     };
   }
 }

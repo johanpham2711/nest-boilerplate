@@ -7,7 +7,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from 'src/common/strategies';
 import { appConfig } from 'src/configs';
 import { QUEUE } from 'src/constants';
-import { BullQueueProcessor } from 'src/services';
+import { BullQueueProcessor, CacheModule } from 'src/services';
 import { UsersModule } from '../users';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
@@ -27,6 +27,7 @@ import { AuthService } from './auth.service';
       name: QUEUE.EMAIL_QUEUE,
       adapter: BullMQAdapter,
     }),
+    CacheModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, BullQueueProcessor],

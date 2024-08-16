@@ -1,4 +1,4 @@
-import { CacheModule } from '@nestjs/cache-manager';
+import { CacheModule as NestCacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import * as redisStore from 'cache-manager-redis-store';
 import { appConfig } from 'src/configs';
@@ -6,7 +6,7 @@ import { CacheService } from './cache.service';
 
 @Module({
   imports: [
-    CacheModule.register({
+    NestCacheModule.register({
       isGlobal: true,
       store: redisStore,
       host: appConfig.redisHost,
@@ -16,4 +16,4 @@ import { CacheService } from './cache.service';
   providers: [CacheService],
   exports: [CacheService],
 })
-export class RedisCacheModule {}
+export class CacheModule {}

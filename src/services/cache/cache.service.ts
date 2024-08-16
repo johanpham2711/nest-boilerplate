@@ -10,7 +10,7 @@ export class CacheService {
     await this.cacheService.set(key, value, ttl);
   }
 
-  async get<T>(key: string): Promise<string> {
+  async get<T = string>(key: string): Promise<string> {
     return this.cacheService.get<T>(key) as unknown as string;
   }
 
