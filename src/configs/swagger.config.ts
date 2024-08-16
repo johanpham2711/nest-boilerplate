@@ -11,6 +11,7 @@ export const swaggerConfig = (app: INestApplication): void => {
     .addTag('app', 'App API')
     .addTag('auth', 'Auth API')
     .addTag('users', 'Users API')
+    .addTag('templates', 'Templates API')
     .addSecurity('basic', {
       type: 'http',
       scheme: 'basic',
