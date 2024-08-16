@@ -12,10 +12,9 @@ export class TemplatesRepository implements IRepository<Template> {
     return this.prisma.template.create({ data });
   }
 
-  async findOne(
-    query?: Prisma.TemplateFindFirstArgs,
-  ): Promise<Template | null> {
-    return this.prisma.template.findFirst(query);
+  async findOne(query?: Prisma.TemplateFindFirstArgs): Promise<Template> {
+    const template = await this.prisma.template.findFirst(query);
+    return template as unknown as Template;
   }
 
   async findMany(query?: Prisma.TemplateFindManyArgs): Promise<Template[]> {
