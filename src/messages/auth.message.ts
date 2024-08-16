@@ -4,4 +4,5 @@ export const AUTH_MESSAGE = {
   USER_ALREADY_EXISTS: 'User already exists!',
   USER_REGISTERED: 'User registered successfully!',
   USER_LOGGED_IN: 'User logged in successfully!',
+  INVALID_OTP: 'Invalid OTP',
 };
