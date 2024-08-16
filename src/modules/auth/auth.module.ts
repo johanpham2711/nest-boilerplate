@@ -1,9 +1,13 @@
+import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
+import { BullBoardModule } from '@bull-board/nestjs';
+import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from 'src/common/strategies';
 import { appConfig } from 'src/configs';
-import { EmailModule } from 'src/services';
+import { QUEUE } from 'src/constants';
+import { BullQueueProcessor } from 'src/services';
 import { UsersModule } from '../users';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
@@ -16,9 +20,15 @@ import { AuthService } from './auth.service';
       secret: appConfig.jwtSecret,
       signOptions: { expiresIn: appConfig.jwtExpiresIn },
     }),
-    EmailModule,
+    BullModule.registerQueue({
+      name: QUEUE.EMAIL_QUEUE,
+    }),
+    BullBoardModule.forFeature({
+      name: QUEUE.EMAIL_QUEUE,
+      adapter: BullMQAdapter,
+    }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, BullQueueProcessor],
 })
 export class AuthModule {}

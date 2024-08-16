@@ -14,6 +14,11 @@ export interface IAppConfig {
   // Database
   readonly databaseUrl: string;
 
+  // Redis
+  readonly redisHost: string;
+  readonly redisPort: number;
+  readonly redisPassword: string;
+
   // Mail
   readonly mailHost: string;
   readonly smtpUsername: string;

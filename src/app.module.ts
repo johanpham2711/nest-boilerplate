@@ -7,12 +7,13 @@ import {
   TemplatesModule,
   UsersModule,
 } from './modules';
-import { EmailModule } from './services';
+import { BullQueueModule, EmailModule } from './services';
 
 @Module({
   imports: [
     PrismaModule,
     EmailModule,
+    BullQueueModule,
     TemplatesModule,
     AuthModule,
     UsersModule,

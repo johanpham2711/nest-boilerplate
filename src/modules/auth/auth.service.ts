@@ -1,10 +1,11 @@
+import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { OTP_EXPIRY } from 'src/constants';
+import { Queue } from 'bull';
+import { OTP_EXPIRY, PROCESSOR, QUEUE } from 'src/constants';
 import { ILoginResponse, IRegisterResponse } from 'src/interfaces';
 import { IMessageResponse } from 'src/interfaces/common/message-response.interface';
 import { AUTH_MESSAGE } from 'src/messages';
-import { EmailService } from 'src/services';
 import { CommonHelper, EncryptHelper, ErrorHelper } from 'src/utils';
 import { UsersService } from '../users/users.service';
 import { LoginDto, RegisterDto, VerifyRegisterDto } from './dtos';
@@ -13,8 +14,9 @@ import { LoginDto, RegisterDto, VerifyRegisterDto } from './dtos';
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
-    private jwtService: JwtService,
-    private emailService: EmailService,
+    private readonly jwtService: JwtService,
+    @InjectQueue(QUEUE.EMAIL_QUEUE)
+    private readonly emailQueue: Queue,
   ) {}
 
   async register(payload: RegisterDto): Promise<IRegisterResponse> {
@@ -32,7 +34,9 @@ export class AuthService {
     const otpExpiry = new Date();
     otpExpiry.setMinutes(otpExpiry.getMinutes() + OTP_EXPIRY);
 
-    await this.emailService.sendVerifyRegisterOtp(payload, otp);
+    this.emailQueue.add(PROCESSOR.SEND_VERIFY_REGISTER_EMAIL, {
+      data: { email: payload.email, name: payload.name, otp },
+    });
 
     // Encrypt user data
     const hash = EncryptHelper.encryptData(

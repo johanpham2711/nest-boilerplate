@@ -6,7 +6,7 @@ import { TUser } from 'src/interfaces';
 
 @Injectable()
 export class EmailService {
-  constructor(private mailerService: MailerService) {}
+  constructor(private readonly mailerService: MailerService) {}
 
   async sendVerifyRegisterOtp(user: TUser, otp: string): Promise<void> {
     await this.mailerService.sendMail({

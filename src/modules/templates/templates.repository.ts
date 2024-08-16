@@ -6,7 +6,7 @@ import { PrismaService } from '../prisma';
 
 @Injectable()
 export class TemplatesRepository implements IRepository<Template> {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(data: Prisma.TemplateCreateInput): Promise<Template> {
     return this.prisma.template.create({ data });
