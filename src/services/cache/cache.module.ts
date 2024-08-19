@@ -11,6 +11,7 @@ import { CacheService } from './cache.service';
       store: redisStore,
       host: appConfig.redisHost,
       port: appConfig.redisPort,
+      password: appConfig.redisPassword,
     }),
   ],
   providers: [CacheService],

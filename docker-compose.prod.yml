@@ -1,4 +1,23 @@
 services:
+  nest-boilerplate:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: nest-boilerplate
+    env_file:
+      - .env.production.local
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - '8080:8080'
+    networks:
+      - app-network
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - redis
+
   postgres:
     image: postgres:16.4
     container_name: postgres

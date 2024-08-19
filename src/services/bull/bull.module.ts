@@ -12,7 +12,7 @@ import { EmailModule } from '../email';
         redis: {
           host: appConfig.redisHost,
           port: appConfig.redisPort,
-          // password: appConfig.redisPassword,
+          password: appConfig.redisPassword,
           // db: appConfig.redisDB,
           // keyPrefix: appConfig.redisKeyPrefix,
         },
