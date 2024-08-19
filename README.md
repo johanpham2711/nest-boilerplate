@@ -1,40 +1,64 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# <p style="text-align: center">NestJs Boilerplate</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; text-align: center;">
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS" />
+  <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma" />
+  <img src="https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white" alt="Yarn" />
+  <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="Postgres" />
+  <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
+  <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest" />
+  <img src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white" alt="Swagger" />
+  <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" alt="JWT" />
+  <img src="https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white" alt="RxJS" />
+  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint" />
+
+</div>
 
 ## Description
 
-[NestJs Boilerplate with Prisma](https://github.com/johanpham2711/nest-boilerplate)
+[NestJs Boilerplate](https://github.com/johanpham2711/nest-boilerplate) with [Typescript](https://www.typescriptlang.org/), [Prisma](https://www.prisma.io/), [Postgres](https://www.postgresql.org/),...
 
 by [Johan Pham](https://github.com/johanpham2711)
 
 ## Installation
 
+There are 2 way to run the application:
+
+- [NestJs Boilerplate](#nestjs-boilerplate)
+  - [Description](#description)
+  - [Installation](#installation)
+    - [Install and run in development mode](#install-and-run-in-development-mode)
+      - [Install dependency](#install-dependency)
+      - [Run necessary container](#run-necessary-container)
+      - [Run the app](#run-the-app)
+      - [Test](#test)
+    - [All in one command with Docker](#all-in-one-command-with-docker)
+      - [Run the app with Docker compose](#run-the-app-with-docker-compose)
+      - [Check the log](#check-the-log)
+
+### Install and run in development mode
+
+#### Install dependency
+
 ```bash
-$ yarn install
+# development
+$ yarn
 ```
 
-## Running the app
+#### Run necessary container
+
+```bash
+# start Postgres and Redis
+$ yarn d:up
+
+# Copy .env
+$ cp .env.example .env
+```
+
+#### Run the app
 
 ```bash
 # development
@@ -47,7 +71,7 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
+#### Test
 
 ```bash
 # unit tests
@@ -60,10 +84,24 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
-## Support
+### All in one command with Docker
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Run the app with Docker compose
 
-## License
+```bash
+# copy environment
+$ cp .env.example .env.production.local
 
-Nest is [MIT licensed](LICENSE).
+# run container
+$ yarn d:up:prod
+```
+
+#### Check the log
+
+```bash
+# check container is running
+$ docker ps
+
+# check container logs
+$ docker logs -f <container_id>
+```
