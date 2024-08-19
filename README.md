@@ -38,6 +38,7 @@ There are 2 way to run the application:
     - [All in one command with Docker](#all-in-one-command-with-docker)
       - [Run the app with Docker compose](#run-the-app-with-docker-compose)
       - [Check the log](#check-the-log)
+  - [Prisma](#prisma)
 
 ### Install and run in development mode
 
@@ -53,6 +54,9 @@ $ yarn
 ```bash
 # start Postgres and Redis
 $ yarn d:up
+
+# generate Prisma schema
+$ yarn prisma:generate
 
 # Copy .env
 $ cp .env.example .env
@@ -104,4 +108,36 @@ $ docker ps
 
 # check container logs
 $ docker logs -f <container_id>
+```
+
+## Prisma
+
+- Generate
+
+```bash
+# generate Prisma schema
+$ yarn prisma:generate
+```
+
+- Migration
+
+```bash
+# generate migration file
+$ yarn mig:run
+
+# apply migration file
+$ yarn mig:run
+
+# undo migration
+$ yarn mig:reset
+
+# check status change
+$ yarn mig:status
+```
+
+- Seed
+
+```bash
+# run seeder
+$ yarn seed:run
 ```
