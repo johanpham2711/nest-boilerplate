@@ -14,11 +14,11 @@ export class BullQueueProcessor {
     );
   }
 
-  @Process(PROCESSOR.SEND_VERIFY_REGISTER_EMAIL)
-  async sendVerifyRegisterEmail(job: Job<IQueueHandle>): Promise<boolean> {
+  @Process(PROCESSOR.SEND_REGISTER_EMAIL)
+  async sendRegisterEmail(job: Job<IQueueHandle>): Promise<boolean> {
     try {
       const data = job.data.data;
-      await this.emailService.sendVerifyRegisterOtp(
+      await this.emailService.sendRegisterOtp(
         {
           email: data.email,
           name: data.name,
@@ -28,7 +28,26 @@ export class BullQueueProcessor {
 
       return true;
     } catch (e: unknown) {
-      console.log('🚀 ~ BullQueueProcessor ~ sendVerifyRegisterEmail ~ e:', e);
+      console.log('🚀 ~ BullQueueProcessor ~ sendRegisterEmail ~ e:', e);
+      return false;
+    }
+  }
+
+  @Process(PROCESSOR.SEND_FORGOT_PASSWORD_EMAIL)
+  async sendForgotPasswordEmail(job: Job<IQueueHandle>): Promise<boolean> {
+    try {
+      const data = job.data.data;
+      await this.emailService.sendForgotPasswordOtp(
+        {
+          email: data.email,
+          name: data.name,
+        },
+        data.otp,
+      );
+
+      return true;
+    } catch (e: unknown) {
+      console.log('🚀 ~ BullQueueProcessor ~ sendForgotPasswordEmail ~ e:', e);
       return false;
     }
   }

@@ -8,14 +8,27 @@ import { TUser } from 'src/interfaces';
 export class EmailService {
   constructor(private readonly mailerService: MailerService) {}
 
-  async sendVerifyRegisterOtp(user: TUser, otp: string): Promise<void> {
+  async sendRegisterOtp(user: TUser, otp: string): Promise<void> {
     await this.mailerService.sendMail({
       to: user.email,
       // from: '"Support Team" <support@example.com>', // override default from
       subject: 'Welcome to Nest Boilerplate! Confirm your Email',
-      template: './verify-register',
+      template: './register',
       context: {
         // filling <%= %> brackets with content
+        name: user.name,
+        otp,
+        date: new Date().toLocaleDateString(),
+      },
+    });
+  }
+
+  async sendForgotPasswordOtp(user: TUser, otp: string): Promise<void> {
+    await this.mailerService.sendMail({
+      to: user.email,
+      subject: 'Nest Boilerplate - Reset your password',
+      template: './forgot-password',
+      context: {
         name: user.name,
         otp,
         date: new Date().toLocaleDateString(),

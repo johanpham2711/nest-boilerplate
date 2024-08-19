@@ -77,4 +77,13 @@ export class UsersService {
       message: USER_MESSAGES.USER_CHANGED_PASSWORD,
     };
   }
+
+  async updateUser(id: string, data: Prisma.UserUpdateInput): Promise<User> {
+    return this.usersRepository.update({
+      where: {
+        id,
+      },
+      data,
+    });
+  }
 }

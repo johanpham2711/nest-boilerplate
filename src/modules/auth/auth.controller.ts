@@ -10,12 +10,41 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { JwtAuthGuard } from 'src/common/guards';
 import { AuthService } from './auth.service';
-import { LoginDto, RegisterDto, VerifyRegisterDto } from './dtos';
+import {
+  ForgotPasswordDto,
+  LoginDto,
+  RegisterDto,
+  VerifyForgotPasswordDto,
+  VerifyRegisterDto,
+} from './dtos';
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  @ApiOperation({ summary: 'API login' })
+  @ApiBody({
+    type: LoginDto,
+    required: true,
+    description: 'Login',
+  })
+  @Post('login')
+  @HttpCode(200)
+  async login(@Body() payload: LoginDto) {
+    return this.authService.login(payload);
+  }
+
+  @ApiOperation({ summary: 'API logout' })
+  @ApiBearerAuth()
+  @Post('logout')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
+  async logout(@Req() req: Request) {
+    const token = req?.headers?.authorization?.split(' ')[1];
+
+    return this.authService.logout(token);
+  }
 
   @ApiOperation({ summary: 'API register new user' })
   @ApiBody({
@@ -41,26 +70,27 @@ export class AuthController {
     return this.authService.verifyRegister(payload);
   }
 
-  @ApiOperation({ summary: 'API login' })
+  @ApiOperation({ summary: 'API forgot password' })
   @ApiBody({
-    type: LoginDto,
+    type: ForgotPasswordDto,
     required: true,
-    description: 'Login',
+    description: 'Forgot password',
   })
-  @Post('login')
+  @Post('forgot-password')
   @HttpCode(200)
-  async login(@Body() payload: LoginDto) {
-    return this.authService.login(payload);
+  async forgotPassword(@Body() payload: ForgotPasswordDto) {
+    return this.authService.forgotPassword(payload);
   }
 
-  @ApiOperation({ summary: 'API logout' })
-  @ApiBearerAuth()
-  @Post('logout')
-  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'API verify forgot password' })
+  @ApiBody({
+    type: VerifyForgotPasswordDto,
+    required: true,
+    description: 'Verify forgot password',
+  })
+  @Post('forgot-password/verify')
   @HttpCode(200)
-  async logout(@Req() req: Request) {
-    const token = req?.headers?.authorization?.split(' ')[1];
-
-    return this.authService.logout(token);
+  async verifyForgotPassword(@Body() payload: VerifyForgotPasswordDto) {
+    return this.authService.verifyForgotPassword(payload);
   }
 }

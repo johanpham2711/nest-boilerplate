@@ -3,5 +3,6 @@ export const QUEUE = {
 };
 
 export const PROCESSOR = {
-  SEND_VERIFY_REGISTER_EMAIL: 'send-verify-register-email',
+  SEND_REGISTER_EMAIL: 'send-register-email',
+  SEND_FORGOT_PASSWORD_EMAIL: 'send-forgot-password-email',
 };

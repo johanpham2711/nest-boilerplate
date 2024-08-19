@@ -7,6 +7,9 @@ export interface IRegisterResponse {
   hash: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IForgotPasswordResponse extends IRegisterResponse {}
+
 export interface ITokenResponse {
   accessToken: string;
   refreshToken?: string;

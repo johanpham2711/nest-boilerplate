@@ -8,4 +8,5 @@ export const AUTH_MESSAGE = {
   INVALID_OTP: 'Invalid OTP',
   OTP_EXPIRED: 'OTP expired',
   UNAUTHORIZED: 'Unauthorized',
+  RESET_PASSWORD: 'Password reset successfully!',
 };
