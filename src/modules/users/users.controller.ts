@@ -10,7 +10,7 @@ export class UsersController {
   @ApiOperation({ summary: 'API get all users' })
   @Get()
   @HttpCode(200)
-  async getUser() {
-    return this.usersService.getUser();
+  async getUsers() {
+    return this.usersService.getUsers();
   }
 }
