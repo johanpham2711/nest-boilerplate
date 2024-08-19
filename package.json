@@ -12,7 +12,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
@@ -21,12 +21,18 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky",
+    "prisma:studio": "prisma studio",
+    "prisma:generate": "prisma generate",
     "mig:gen": "prisma migrate dev --create-only --name",
     "mig:run": "prisma migrate dev",
     "mig:reset": "prisma migrate reset --force",
     "mig:status": "prisma migrate status",
     "seed:run": "prisma db seed",
-    "prisma:studio": "prisma studio"
+    "d:up": "docker compose up -d",
+    "d:down": "docker compose down",
+    "d:up:prod": "docker compose -f docker-compose.prod.yml up  -d",
+    "d:down:prod": "docker compose -f docker-compose.prod.yml down",
+    "d:logs": "docker compose logs -f"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -38,6 +44,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "morgan": "^1.10.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
