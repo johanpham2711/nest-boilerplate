@@ -21,7 +21,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky",
-    "mig:gen": "prisma migrate dev --name",
+    "mig:gen": "prisma migrate dev --create-only --name",
     "mig:run": "prisma migrate dev",
     "mig:reset": "prisma migrate reset --force",
     "mig:status": "prisma migrate status",
