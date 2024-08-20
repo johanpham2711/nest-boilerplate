@@ -24,7 +24,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @HttpCode(200)
   async getUserProfile(@User() user: TUser) {
-    return this.usersService.getUserProfile(user);
+    return this.usersService.getUserProfile(user.id as string);
   }
 
   @ApiOperation({ summary: 'API change password' })
@@ -38,9 +38,9 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @HttpCode(200)
   async changePassword(
-    @Body() payload: ChangePasswordDto,
     @User() user: TUser,
+    @Body() payload: ChangePasswordDto,
   ) {
-    return this.usersService.changePassword(payload, user);
+    return this.usersService.changePassword(user.id as string, payload);
   }
 }
