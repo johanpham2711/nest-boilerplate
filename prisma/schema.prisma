@@ -47,3 +47,19 @@ model Template {
 
 //   @@map("profiles")
 // }
+
+// model Category {
+//   id           String   @id @default(cuid())
+//   categoryName String   @db.VarChar(255)
+//   parentId     String?  @db.VarChar(255)
+//   level        Int
+//   notes        String?  @db.Text
+//   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+//   updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamp(6)
+
+//   // Self-referencing relationship
+//   parent        Category?  @relation("CategoryToCategory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+//   subCategories Category[] @relation("CategoryToCategory")
+
+//   @@map("categories")
+// }
