@@ -4,7 +4,7 @@
 
   <img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS" />
   <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma" />
-  <img src="https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white" alt="Yarn" />
+  <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" alt="PNPM" />
   <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="Postgres" />
   <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
   <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
@@ -46,17 +46,17 @@ There are 2 way to run the application:
 
 ```bash
 # development
-$ yarn
+$ pnpm install
 ```
 
 #### Run necessary container
 
 ```bash
 # start Postgres and Redis
-$ yarn d:up
+$ pnpm d:up
 
 # generate Prisma schema
-$ yarn prisma:generate
+$ pnpm prisma:generate
 
 # Copy .env
 $ cp .env.example .env
@@ -66,26 +66,26 @@ $ cp .env.example .env
 
 ```bash
 # development
-$ yarn run start
+$ pnpm run start
 
 # watch mode
-$ yarn run start:dev
+$ pnpm run start:dev
 
 # production mode
-$ yarn run start:prod
+$ pnpm run start:prod
 ```
 
 #### Test
 
 ```bash
 # unit tests
-$ yarn run test
+$ pnpm run test
 
 # e2e tests
-$ yarn run test:e2e
+$ pnpm run test:e2e
 
 # test coverage
-$ yarn run test:cov
+$ pnpm run test:cov
 ```
 
 ### All in one command with Docker
@@ -97,7 +97,7 @@ $ yarn run test:cov
 $ cp .env.example .env.production.local
 
 # run container
-$ yarn d:up:prod
+$ pnpm d:up:prod
 ```
 
 #### Check the log
@@ -116,28 +116,28 @@ $ docker logs -f <container_id>
 
 ```bash
 # generate Prisma schema
-$ yarn prisma:generate
+$ pnpm prisma:generate
 ```
 
 - Migration
 
 ```bash
 # generate migration file
-$ yarn mig:run
+$ pnpm mig:run
 
 # apply migration file
-$ yarn mig:run
+$ pnpm mig:run
 
 # undo migration
-$ yarn mig:reset
+$ pnpm mig:reset
 
 # check status change
-$ yarn mig:status
+$ pnpm mig:status
 ```
 
 - Seed
 
 ```bash
 # run seeder
-$ yarn seed:run
+$ pnpm seed:run
 ```

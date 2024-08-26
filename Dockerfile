@@ -2,14 +2,14 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json yarn.lock ./
+COPY package*.json pnpm-lock.yaml ./
 COPY prisma ./prisma/
 
-RUN yarn
+RUN pnpm install
 
 COPY . .
 
-RUN yarn build
+RUN pnpm build
 
 FROM node:18-alpine
 
@@ -18,4 +18,4 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/dist ./dist
 
 EXPOSE 8080
-CMD [ "yarn", "start:prod" ]
+CMD [ "pnpm", "start:prod" ]
