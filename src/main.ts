@@ -1,3 +1,10 @@
+import { swaggerEnvironments } from '@common/constants';
+import {
+  HttpExceptionFilter,
+  PrismaClientExceptionFilter,
+} from '@common/filters';
+import { TransformInterceptor } from '@common/interceptors';
+import { CustomValidationPipe } from '@common/pipes';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -5,14 +12,7 @@ import { useContainer } from 'class-validator';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
 import { AppModule } from './app.module';
-import {
-  HttpExceptionFilter,
-  PrismaClientExceptionFilter,
-} from './common/filters';
-import { TransformInterceptor } from './common/interceptors';
-import { CustomValidationPipe } from './common/pipes';
 import { appConfig, swaggerConfig } from './configs';
-import { swaggerEnvironments } from './constants';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);

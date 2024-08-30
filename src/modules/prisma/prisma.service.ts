@@ -1,6 +1,6 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { EncryptHelper } from 'src/utils';
+import { EncryptHelper } from '@src/utils';
 
 @Injectable()
 export class PrismaService

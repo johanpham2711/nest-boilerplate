@@ -7,7 +7,7 @@ import {
 import { Response } from 'express';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IResponse } from 'src/interfaces';
+import { IResponse } from '@common/interfaces';
 
 @Injectable()
 export class TransformInterceptor<T> implements NestInterceptor<T, IResponse> {

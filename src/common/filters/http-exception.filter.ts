@@ -7,8 +7,8 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { IResponse } from 'src/interfaces';
-import { COMMON_MESSAGES } from 'src/messages';
+import { COMMON_MESSAGES } from '@common/messages';
+import { IResponse } from '@common/interfaces';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
