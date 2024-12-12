@@ -7,8 +7,8 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { PASSWORD_REGEX } from 'src/constants';
-import { COMMON_MESSAGES } from 'src/messages';
+import { PASSWORD_REGEX } from '@common/constants';
+import { COMMON_MESSAGES } from '@common/messages';
 
 export class LoginDto {
   @ApiProperty({

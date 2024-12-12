@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
-import { defaultPagination } from 'src/constants';
-import { IPaginationResponse, IRepository } from 'src/interfaces';
+import { defaultPagination } from '@common/constants';
+import { IPaginationResponse, IRepository } from '@common/interfaces';
 import { PrismaService } from '../prisma';
 
 @Injectable()

@@ -2,12 +2,12 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { ExecutionContext, Inject, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Cache } from 'cache-manager';
-import { AUTH_MESSAGE } from 'src/messages';
-import { ErrorHelper } from 'src/utils';
+import { AUTH_MESSAGE } from '@common/messages';
+import { ErrorHelper } from '@src/utils';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
-  constructor(@Inject(CACHE_MANAGER) private cacheService: Cache) {
+  constructor(@Inject(CACHE_MANAGER) private readonly cacheService: Cache) {
     super();
   }
 

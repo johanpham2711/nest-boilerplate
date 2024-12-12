@@ -8,9 +8,9 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { Match } from 'src/common/decorators';
-import { PASSWORD_REGEX } from 'src/constants';
-import { COMMON_MESSAGES } from 'src/messages';
+import { Match } from '@common/decorators';
+import { PASSWORD_REGEX } from '@common/constants';
+import { COMMON_MESSAGES } from '@common/messages';
 
 export class RegisterDto {
   @ApiProperty({

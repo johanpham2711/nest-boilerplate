@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator';
-import { COMMON_MESSAGES } from 'src/messages';
+import { COMMON_MESSAGES } from '@common/messages';
 
 export class ForgotPasswordDto {
   @ApiProperty({

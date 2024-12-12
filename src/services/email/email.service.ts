@@ -2,7 +2,7 @@
 
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import { TUser } from 'src/interfaces';
+import { TUser } from '@common/interfaces';
 
 @Injectable()
 export class EmailService {

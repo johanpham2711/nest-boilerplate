@@ -8,11 +8,11 @@ import { AppModule } from './app.module';
 import {
   HttpExceptionFilter,
   PrismaClientExceptionFilter,
-} from './common/filters';
-import { TransformInterceptor } from './common/interceptors';
-import { CustomValidationPipe } from './common/pipes';
+} from '@common/filters';
+import { TransformInterceptor } from '@common/interceptors';
+import { CustomValidationPipe } from '@common/pipes';
 import { appConfig, swaggerConfig } from './configs';
-import { swaggerEnvironments } from './constants';
+import { swaggerEnvironments } from '@common/constants';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);

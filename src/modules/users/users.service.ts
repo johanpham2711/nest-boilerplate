@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
-import { TUser } from 'src/interfaces';
-import { IMessageResponse } from 'src/interfaces/common/message-response.interface';
-import { USER_MESSAGES } from 'src/messages';
+import { TUser } from '@common/interfaces';
+import { IMessageResponse } from '@common/interfaces/common/message-response.interface';
+import { USER_MESSAGES } from '@common/messages';
 import { EncryptHelper, ErrorHelper } from 'src/utils';
 import { ChangePasswordDto } from './dtos';
 import { UsersRepository } from './users.repository';

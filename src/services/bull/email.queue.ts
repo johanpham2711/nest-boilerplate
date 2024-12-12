@@ -1,7 +1,7 @@
 import { OnQueueActive, Process, Processor } from '@nestjs/bull';
 import { Job } from 'bull';
-import { PROCESSOR, QUEUE } from 'src/constants';
-import { IQueueHandle } from 'src/interfaces';
+import { PROCESSOR, QUEUE } from '@common/constants';
+import { IQueueHandle } from '@common/interfaces';
 import { EmailService } from '../email';
 
 @Processor(QUEUE.EMAIL_QUEUE)

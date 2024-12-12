@@ -7,9 +7,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { User } from 'src/common/decorators';
-import { JwtAuthGuard } from 'src/common/guards';
-import { TUser } from 'src/interfaces';
+import { User } from '@common/decorators';
+import { JwtAuthGuard } from '@common/guards';
+import { TUser } from '@common/interfaces';
 import { ChangePasswordDto } from './dtos';
 import { UsersService } from './users.service';
 

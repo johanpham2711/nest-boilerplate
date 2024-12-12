@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { TUser } from 'src/interfaces';
+import { TUser } from '@common/interfaces';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const User = createParamDecorator<any, any, TUser>(

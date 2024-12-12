@@ -8,7 +8,6 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
-import { JwtAuthGuard } from 'src/common/guards';
 import { AuthService } from './auth.service';
 import {
   ForgotPasswordDto,
@@ -17,6 +16,7 @@ import {
   VerifyForgotPasswordDto,
   VerifyRegisterDto,
 } from './dtos';
+import { JwtAuthGuard } from '@common/guards';
 
 @ApiTags('auth')
 @Controller('auth')

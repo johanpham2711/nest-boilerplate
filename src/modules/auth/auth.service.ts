@@ -2,14 +2,14 @@ import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Queue } from 'bull';
-import { OTP_EXPIRY, PROCESSOR, QUEUE } from 'src/constants';
+import { OTP_EXPIRY, PROCESSOR, QUEUE } from '@common/constants';
 import {
   IForgotPasswordResponse,
   ILoginResponse,
   IRegisterResponse,
-} from 'src/interfaces';
-import { IMessageResponse } from 'src/interfaces/common/message-response.interface';
-import { AUTH_MESSAGE } from 'src/messages';
+} from '@common/interfaces';
+import { IMessageResponse } from '@common/interfaces/common/message-response.interface';
+import { AUTH_MESSAGE } from '@common/messages';
 import { CacheService } from 'src/services';
 import { CommonHelper, EncryptHelper, ErrorHelper } from 'src/utils';
 import { UsersService } from '../users/users.service';
