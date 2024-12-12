@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
-import { IAppConfig } from 'src/interfaces';
+import { IAppConfig } from '@common/interfaces';
+
 dotenv.config();
 
 export const appConfig: IAppConfig = {
