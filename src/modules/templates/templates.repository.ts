@@ -1,8 +1,8 @@
+import { defaultPagination } from '@common/constants';
+import { IPaginationResponse, IRepository } from '@common/interfaces';
+import { PrismaService } from '@modules/prisma';
 import { Injectable } from '@nestjs/common';
 import { Prisma, Template } from '@prisma/client';
-import { defaultPagination } from 'src/constants';
-import { IPaginationResponse, IRepository } from 'src/interfaces';
-import { PrismaService } from '../prisma';
 
 @Injectable()
 export class TemplatesRepository implements IRepository<Template> {
