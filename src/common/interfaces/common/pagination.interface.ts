@@ -1,5 +1,5 @@
 export interface IPaginationResponse<T> {
-  items: T[];
+  items: Partial<T>[];
   page: number;
   pageSize: number;
   total: number;

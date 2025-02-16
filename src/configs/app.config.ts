@@ -29,4 +29,8 @@ export const appConfig: IAppConfig = {
   mailHost: process.env.MAIL_HOST ?? 'smtp.mailtrap.io',
   smtpUsername: process.env.SMTP_USERNAME ?? 'username',
   smtpPassword: process.env.SMTP_PASSWORD ?? 'password',
+
+  // Google
+  googleApiKey: process.env.GOOGLE_API_KEY ?? 'google-api-key',
+  googleCseId: process.env.GOOGLE_CSE_ID ?? 'google-cse-id',
 };

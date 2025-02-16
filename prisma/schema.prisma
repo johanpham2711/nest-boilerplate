@@ -21,6 +21,19 @@ model User {
   @@map("users")
 }
 
+model Supplier {
+  id          String   @id @default(cuid())
+  name        String
+  email       String?  @unique
+  phoneNumber String?  @map("phone_number")
+  country     String?  @db.VarChar(255)
+  isHandled   Boolean  @default(false) @map("is_handled")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  @@map("suppliers")
+}
+
 model Template {
   id        String   @id @default(cuid())
   email     String   @unique

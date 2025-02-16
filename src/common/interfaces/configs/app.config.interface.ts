@@ -23,4 +23,8 @@ export interface IAppConfig {
   readonly mailHost: string;
   readonly smtpUsername: string;
   readonly smtpPassword: string;
+
+  // Google
+  readonly googleApiKey: string;
+  readonly googleCseId: string;
 }
