@@ -24,7 +24,7 @@ model User {
 model Supplier {
   id          String   @id @default(cuid())
   name        String
-  email       String?  @unique
+  email       String?
   phoneNumber String?  @map("phone_number")
   country     String?  @db.VarChar(255)
   isHandled   Boolean  @default(false) @map("is_handled")

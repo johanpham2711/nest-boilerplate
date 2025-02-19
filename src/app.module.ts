@@ -9,6 +9,7 @@ import {
   UsersModule,
 } from './modules';
 import { BullQueueModule, CacheModule, EmailModule } from './services';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { BullQueueModule, CacheModule, EmailModule } from './services';
     BullQueueModule,
     CacheModule,
     TemplatesModule,
+    ScheduleModule.forRoot(),
     AuthModule,
     UsersModule,
     SuppliersModule,

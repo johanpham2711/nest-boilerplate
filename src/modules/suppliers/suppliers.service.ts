@@ -75,13 +75,15 @@ export class SuppliersService {
     }
 
     for (const supplier of suppliers) {
-      await this.suppliersRepository.update({
-        where: { id: supplier.id },
-        data: { isHandled: true },
-      });
+      const { result, errorCode } = await this.findCompanyInfo(supplier.name);
+      console.log(`Company: ${supplier.name}, Data:`, { result, errorCode });
 
-      const result = await this.findCompanyInfo(supplier.name);
-      console.log(`Company: ${supplier.name}, Data:`, result);
+      if (errorCode !== 429) {
+        await this.suppliersRepository.update({
+          where: { id: supplier.id },
+          data: { isHandled: true },
+        });
+      }
 
       // Update supplier info
       if (result) {
@@ -109,10 +111,10 @@ export class SuppliersService {
     };
   }
 
-  @Cron(CronExpression.EVERY_5_SECONDS)
+  @Cron(CronExpression.EVERY_MINUTE)
   async handleScheduledSuppliers(): Promise<void> {
     console.log('Handle scheduled task');
-    const limit = 1;
+    const limit = 5;
     await this.handleSuppliers(limit);
   }
 
@@ -129,7 +131,9 @@ export class SuppliersService {
 
       if (!items || items.length === 0) {
         console.log(`Company: ${companyName} not found!`);
-        return null;
+        return {
+          errorCode: 404,
+        };
       }
 
       // Get the first result's website URL
@@ -148,11 +152,15 @@ export class SuppliersService {
       const emails = pageText.match(emailRegex) || [];
       const phones = pageText.match(phoneRegex) || [];
 
-      return { emails: [...new Set(emails)], phones: [...new Set(phones)] };
+      return {
+        result: { emails: [...new Set(emails)], phones: [...new Set(phones)] },
+      };
     } catch (error) {
       console.error('Error:', error.message);
       console.log(`Company: ${companyName} not found!`);
-      return null;
+      return {
+        errorCode: error.status,
+      };
     }
   }
 }
