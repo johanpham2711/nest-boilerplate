@@ -163,4 +163,19 @@ export class SuppliersService {
       };
     }
   }
+
+  async exportSuppliersToExcel(): Promise<Buffer> {
+    const suppliers = await this.suppliersRepository.findMany({
+      orderBy: { name: 'asc' },
+    });
+
+    const data = suppliers.map((supplier) => ({
+      Company: supplier.name,
+      Email: supplier.email,
+      Phone: supplier.phoneNumber,
+      Country: supplier.country,
+    }));
+
+    return FileHelper.exportToExcel(data);
+  }
 }
