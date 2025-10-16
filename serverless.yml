@@ -1,0 +1,35 @@
+service: nest-nest-boilerplate
+
+useDotenv: true
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    HOST: ${env.HOST}
+    PORT: ${env.PORT}
+    ENVIROMENT: ${env.ENVIROMENT}
+    VERSION: ${env.VERSION}
+    PREFIX: ${env.PREFIX}
+    DATABASE_URL: ${env.DATABASE_URL}
+    DATABASE_NAME: ${env.DATABASE_NAME}
+    DATABASE_USER: ${env.DATABASE_USER}
+    DATABASE_PASSWORD: ${env.DATABASE_PASSWORD}
+
+  region: us-east-1
+  memorySize: 1024
+  timeout: 30
+
+functions:
+  main:
+    handler: dist/src/serverless.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: "{proxy+}"
